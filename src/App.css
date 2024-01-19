@@ -1,38 +1,296 @@
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #212121;
+  border-radius: 6px;
+  border: 1px #2b2b2b solid;
+}
+::-webkit-scrollbar-track {
+  background-image: linear-gradient(to top, #111111 50%, #707070 100%);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #303030;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+* {
+  font-size: large;
+}
 .App {
+  background-image: url("https://miro.medium.com/v2/resize:fit:1400/1*ha5xladCg0kbQM9GfCLBcw.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+#scroll-to-top {
+  all: unset;
+  color: white;
+  background-color: #21212169;
+  border: 2px lightgray solid;
+  border-radius: 50px;
+  padding: 10px;
+  box-shadow: 0 0 3px lightgray;
+  display: none;
+  position: fixed;
+  right: 25px;
+  bottom: 27px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+#scroll-to-top:hover {
+  box-shadow: 0 0 8px lightgray;
+  background-color: #303030;
+}
+.SearchBar {
+  /* border: 2px red solid; */
+  max-width: 1000px;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 10px;
+  z-index: 2;
+}
+#movie-title {
+  all: unset;
+  max-width: 200px;
+  border-radius: 10px;
+}
+#movie-rating {
+  max-width: 300px;
+  border: none;
+}
+#movie-title,
+#movie-rating {
+  background-color: #212121;
+  color: rgba(0, 0, 0, 0.563);
+  height: 50px;
+  border-radius: 10px;
+  padding: 0 15px;
+  box-shadow: 0 0 15px, inset 0 0 5px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.5s, color 0.3s;
+}
+
+#movie-title:focus,
+#movie-rating:focus {
+  color: white;
+  background-color: #303030;
+  box-shadow: 0 0 8px 1px;
+}
+#movie-title:not(:focus),
+#movie-rating:not(:focus) {
+  color: dimgray;
+}
+
+.NewMovieForm {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.AdditionForm {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: 20px;
+  background-color: lightsteelblue;
+  box-shadow: 0 0 15px 10px black;
+  border-radius: 5px;
+}
+input {
+  width: 100%;
+}
+.addBtn {
+  /* border: 1px black solid; */
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.AdditionForm button,
+#exit {
+  all: unset;
+  color: white;
+  background-color: dimgray;
+  border: 2px lightgray solid;
+  border-radius: 50px;
+  height: 35px;
+  box-shadow: 0 0 3px lightgray;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.AdditionForm button {
+  padding: 5px 20px;
+}
+#exit {
+  position: absolute;
+  top: 10px;
+  right: 27px;
+  height: 35px;
+  padding: 5px 17px;
+}
+.AdditionForm button:hover,
+#exit:hover {
+  box-shadow: 0 0 8px lightgray;
+  background-color: #303030;
+}
+textarea {
+  width: 100%;
+  resize: none;
+}
+.Navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.7);
+  max-width: 100%;
+  height: 70px;
+  margin: auto;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.Navbar img {
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+.Navbar button {
+  all: unset;
+  color: black;
+  background-color: dimgray;
+  border: 2px lightgray solid;
+  border-radius: 10px;
+  height: 35px;
+  padding: 5px 17px;
+  box-shadow: 0 0 3px lightgray;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.toShow {
+  display: none;
+}
+.Navbar img:hover {
+  filter: drop-shadow(0 0 5px lightgray);
+}
+.Navbar button:hover {
+  box-shadow: 0 0 8px lightgray;
+  background-color: rgb(140, 139, 139);
+}
+.Navbar button:hover .toShow {
+  display: inline;
+}
+.MovieList {
+  /* border: 2px gray solid; */
+  max-width: 1100px;
+  padding: 30px 10px;
+  margin: auto;
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+#movie-title {
+  all: unset;
+  background-color: #212121;
+  width: 100%;
+  max-width: 700px;
+  height: 50px;
+  border-radius: 50px;
+  padding: 0 15px;
+  box-shadow: 0 0 15px;
+  transition: background-color 0.5s, color 0.3s;
+}
+#movie-title:focus {
+  color: white;
+  background-color: #303030;
+}
+.card {
+  width: 14rem;
+  background-color: dimgray;
+  border-radius: 30px;
+  color: white;
+  overflow: hidden;
+  box-shadow: rgba(7, 7, 7, 0.25) 0px 25px 50px -12px;
+  transition: box-shadow 0.7s;
+}
+.imgWrapper {
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+.imgWrapper img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+.releaseDate {
+  position: absolute;
+  bottom: 0;
+  background-image: linear-gradient(
+    to top,
+    #000000 0%,
+    #000000d0 70%,
+    transparent 100%
+  );
+  width: 100%;
+  height: 0;
+  padding: 0 15px;
+  overflow: hidden;
+  transition: height 0.3s;
+}
+.releaseDate p {
+  width: 12.5rem;
+  margin: 10px 0;
+  text-wrap: wrap;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cardBody {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 60px;
+  padding: 10px;
+}
+.cardBody h2,
+.cardBody p {
+  margin: 0;
+}
+.cardBody h2 {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+.cardBody p {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 5px;
 }
-
-.App-link {
-  color: #61dafb;
+abbr {
+  all: unset;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card:hover .releaseDate {
+  height: 150px;
+}
+.card:hover .imgWrapper img {
+  transform: scale(1.05);
+}
+.card:hover {
+  box-shadow: rgba(172, 172, 172, 0.55) 0px 25px 50px -12px;
 }
