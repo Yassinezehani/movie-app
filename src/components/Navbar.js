@@ -1,5 +1,6 @@
 import React from "react";
 //import "./Navbar.css";
+import { NavLink } from "react-router-dom";
 
 function Navbar({ toggleShow }) {
   return (
@@ -9,7 +10,10 @@ function Navbar({ toggleShow }) {
         alt="Website Logo"
         height={"100%"}
       />
-
+      <div>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
+      </div>
       <button onClick={toggleShow}>+Add Movie</button>
     </div>
   );

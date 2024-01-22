@@ -1,14 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //import "./MovieCard.css";
 
-function MovieCard({ imgURL, title, rating, description }) {
+function MovieCard({ imgURL, title, rating, description, id }) {
   return (
     <div className="MovieCard">
       <div className="card">
         <div className="imgWrapper">
           <img src={imgURL} alt="Movie Poster" width={"100%"} />
           <div className="releaseDate">
-            
             <p>{description}</p>
           </div>
         </div>
@@ -24,6 +24,7 @@ function MovieCard({ imgURL, title, rating, description }) {
             />
             Rating: {rating}/10
           </p>
+          <Link to={`/movie/${id}`}>Details</Link>
         </div>
       </div>
     </div>

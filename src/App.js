@@ -5,7 +5,9 @@ import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import { myObject } from "./myData";
 import NewMovieForm from "./components/NewMovieForm";
-
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import NewTrailer from "./components/NewTrailer";
 function App() {
   // State variables to manage user input and component visibility
   const [searchedTitle, setSearchedTitle] = useState("");
@@ -54,16 +56,27 @@ function App() {
   return (
     <div className="App">
       <Navbar toggleShow={toggleShow} />
-      <SearchBar handleFilter={handlefilter} />
-      <MovieList filteredMovies={filteredData} />
-      {show && (
-        <NewMovieForm
-          toggleShow={toggleShow}
-          additionHandler={additionHandler}
-          newData={newData}
-          setNewData={setNewData}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/movies"
+          element={
+            <>
+              <SearchBar handleFilter={handlefilter} />
+              {show && (
+                <NewMovieForm
+                  toggleShow={toggleShow}
+                  additionHandler={additionHandler}
+                  newData={newData}
+                  setNewData={setNewData}
+                />
+              )}
+              <MovieList filteredMovies={filteredData} />
+            </>
+          }
         />
-      )}
+        <Route path="/movie/:id" element={<NewTrailer myData={myData} />} />
+      </Routes>
     </div>
   );
 }

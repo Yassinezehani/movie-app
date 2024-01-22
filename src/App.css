@@ -294,3 +294,7 @@ abbr {
 .card:hover {
   box-shadow: rgba(172, 172, 172, 0.55) 0px 25px 50px -12px;
 }
+.movies-desc {
+  background-color: white;
+  
+}
